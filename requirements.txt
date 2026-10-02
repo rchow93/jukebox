@@ -1,0 +1,6 @@
+mutagen
+flask
+
+# optional — only for the "⇧ Zune" push feature (lazy-imported, not needed for the UI):
+# pyusb
+# pycryptodome

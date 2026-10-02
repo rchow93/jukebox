@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jukebox</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="cabinet">
+    <div class="trim trim-top"></div>
+
+    <!-- face switcher: which media the cabinet is showing -->
+    <nav class="faces" aria-label="Media face">
+      <button data-face="audio" class="active">&#127928; Jukebox</button>
+      <button data-face="photo">&#128247; Photos</button>
+      <button data-face="video">&#127916; DVD</button>
+    </nav>
+
+    <!-- marquee: now playing -->
+    <header class="marquee">
+      <div class="marquee-glow">
+        <span id="np-title" class="np-title">Pick a song</span>
+        <span id="np-artist" class="np-artist">&nbsp;</span>
+      </div>
+    </header>
+
+    <!-- A1–F0 selection grid -->
+    <section class="grid" id="grid" aria-label="Selection grid"></section>
+
+    <!-- glass browse panel -->
+    <section class="glass">
+      <nav class="tabs">
+        <button data-view="artists" class="active">Artists</button>
+        <button data-view="albums">Albums</button>
+        <button data-view="genres">Genres</button>
+        <button data-view="folders">Folders</button>
+        <button data-view="playlists">Playlists</button>
+        <button data-view="sync">Sync List</button>
+        <button id="surprise" class="surprise">Surprise me</button>
+      </nav>
+      <div class="pl-tools">
+        <label class="pl-add" title="Add every song in the current view to a playlist">➕ Add list to
+          <select id="pl-add"><option value="">…</option></select>
+        </label>
+        <label class="pl-add" title="Add only the ☑-checked songs in the current view to a playlist (they also join the sync list)">➕ Add checked to
+          <select id="pl-add-checked"><option value="">…</option></select>
+        </label>
+        <button id="pl-new">New playlist</button>
+        <button id="pl-del" disabled>Delete</button>
+        <button id="sync-list" title="Add the current list to the sync list, then sync the Zune to match it">✓ Sync this list</button>
+        <span id="sync-count" class="sync-count" title="Click to open the sync list"></span>
+      </div>
+      <div id="list" class="list"></div>
+    </section>
+
+    <!-- control deck + coin slot -->
+    <footer class="controls">
+      <button id="prev" title="Previous">&#9198;</button>
+      <button id="playpause" title="Play/Pause" class="play">&#9208;</button>
+      <button id="next" title="Next">&#9197;</button>
+      <button id="push-zune" class="push-zune" title="Sync: the Zune mirrors your sync list — adds what's checked, removes what fell out">&#8657; Zune</button>
+      <div class="coin-slot" title="Coin slot"></div>
+    </footer>
+
+    <!-- stage (covers the cabinet while open): photo slideshow or video playback -->
+    <div id="slideshow" class="slideshow" hidden>
+      <button id="ss-close" class="ss-close" title="Close (Esc)">&#10005;</button>
+      <img id="ss-img" alt="">
+      <video id="video" controls hidden></video>
+      <div class="ss-bar">
+        <button id="ss-prev" title="Previous (&#8592;)">&#9198;</button>
+        <span id="ss-count" class="ss-count"></span>
+        <button id="ss-next" title="Next (&#8594;)">&#9197;</button>
+      </div>
+    </div>
+
+    <div class="trim trim-bottom"></div>
+    <audio id="audio"></audio>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
